@@ -10,7 +10,7 @@ local duration = CreateConVar("ttt_sm_duration", 1, {FCVAR_SERVER_CAN_EXECUTE, F
 
 if SERVER then
 	hook.Add("TTTEndRound", "TTTSlowMotion", function(result)
-		if (!result or result != WIN_TIMELIMIT) then
+		if (result ~= WIN_TIMELIMIT) then
 			-- use a network message, because the TTTEndRound hook
 			-- doesn't give you the result on the client
 			net.Start("TTT_Start_Slowmo")
@@ -53,7 +53,7 @@ else
 		local fadeOutStepTime = slowtime * 1.1
 		for i = 1, 20 do
 			timer.Simple(fadeInStepTime * i, function() mt = (i^2) / 400 end) -- fade in
-			if (i != 5) then
+			if (i ~= 5) then
 				timer.Simple(fadeOutStepTime + fadeInStepTime * 1.25 * i, function() mt = 1 - (i^2) / 400 end) -- fade out
 			else
 				timer.Simple(fadeOutStepTime + fadeInStepTime * 1.25 * i, function() -- fade out with sound
