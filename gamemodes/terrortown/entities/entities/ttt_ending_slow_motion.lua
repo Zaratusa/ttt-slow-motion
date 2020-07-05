@@ -13,7 +13,7 @@ if SERVER then
 		if (result ~= WIN_TIMELIMIT) then
 			-- use a network message, because the TTTEndRound hook
 			-- doesn't give you the result on the client
-			net.Start("TTT_Start_Slowmo")
+			net.Start("TTT_SlowMotion_Start")
 			net.WriteInt(result, 4)
 			net.Broadcast()
 
